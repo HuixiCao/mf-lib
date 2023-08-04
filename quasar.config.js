@@ -13,7 +13,6 @@
 const { configure } = require('quasar/wrappers');
 const path = require('node:path');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
-const { FederatedTypesPlugin } = require('@module-federation/typescript');
 
 module.exports = configure(function (ctx) {
   return {
@@ -86,26 +85,29 @@ module.exports = configure(function (ctx) {
           new ModuleFederationPlugin({
             name: 'ui',
             filename: 'remoteEntry.js',
-            exposes: {},
-            remotes: {
-              template: 'template@http://localhost:8095/remoteEntry.js',
+            exposes: {
+              './components/fpcButton':
+                './src/fpcUILibrary/components/example/button',
+              './components/fpcButton2':
+                './src/fpcUILibrary/components/example2/button',
             },
+            remotes: {},
             shared: ['vue', 'quasar', '@quasar/extras', 'core-js'],
           })
         );
-        cfg.plugins.push(
-          new FederatedTypesPlugin({
-            federationConfig: {
-              name: 'ui',
-              filename: 'remoteEntry.js',
-              exposes: {},
-              remotes: {
-                template: 'template@http://localhost:8095/remoteEntry.js',
-              },
-              shared: ['vue', 'quasar', '@quasar/extras', 'core-js'],
-            },
-          }) // remote typesafe plugin
-        );
+        // cfg.plugins.push(
+        //   new FederatedTypesPlugin({
+        //     federationConfig: {
+        //       name: 'ui',
+        //       filename: 'remoteEntry.js',
+        //       exposes: {},
+        //       remotes: {
+        //         template: 'template@http://localhost:8095/remoteEntry.js',
+        //       },
+        //       shared: ['vue', 'quasar', '@quasar/extras', 'core-js'],
+        //     },
+        //   }) // remote typesafe plugin
+        // );
       },
     },
 
