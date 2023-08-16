@@ -80,7 +80,7 @@ module.exports = configure(function (ctx) {
         chain.optimization.delete('splitChunks');
       },
       extendWebpack(cfg) {
-        cfg.entry = path.resolve(__dirname, './.quasar/main.js'); // from step 1
+        cfg.entry = path.resolve(__dirname, 'src/main.ts'); // from step 1
         cfg.plugins.push(
           new ModuleFederationPlugin({
             name: 'ui',
@@ -93,6 +93,20 @@ module.exports = configure(function (ctx) {
             },
             remotes: {},
             shared: ['vue', 'quasar', '@quasar/extras', 'core-js'],
+            // shared: {
+            //   vue: {
+            //     eager: true,
+            //   },
+            //   quasar: {
+            //     eager: true,
+            //   },
+            //   '@quasar/extras': {
+            //     eager: true,
+            //   },
+            //   'core-js': {
+            //     eager: true,
+            //   },
+            // },
           })
         );
         // cfg.plugins.push(
