@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-btn>click me 11</q-btn>
+    <q-btn color="primary">click me 11</q-btn>
   </div>
 </template>
 
