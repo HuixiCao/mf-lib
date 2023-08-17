@@ -81,6 +81,7 @@ module.exports = configure(function (ctx) {
       },
       extendWebpack(cfg) {
         cfg.entry = path.resolve(__dirname, 'src/main.ts'); // from step 1
+        cfg.output.publicPath = 'https://mf-lib.vercel.app/';
         cfg.plugins.push(
           new ModuleFederationPlugin({
             name: 'ui',
