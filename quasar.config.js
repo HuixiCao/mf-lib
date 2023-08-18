@@ -9,10 +9,11 @@
 // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js
 
 /* eslint-disable @typescript-eslint/no-var-requires */
-
+const ESLintPlugin = require('eslint-webpack-plugin');
 const { configure } = require('quasar/wrappers');
 const path = require('node:path');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+require('dotenv').config();
 
 module.exports = configure(function (ctx) {
   return {
@@ -78,10 +79,16 @@ module.exports = configure(function (ctx) {
       chainWebpack(chain) {
         // ...
         chain.optimization.delete('splitChunks');
+        chain
+          .plugin('eslint-webpack-plugin')
+          .use(ESLintPlugin, [{ extensions: ['js', 'ts', 'vue'] }]);
       },
       extendWebpack(cfg) {
         cfg.entry = path.resolve(__dirname, 'src/main.ts'); // from step 1
-        cfg.output.publicPath = 'https://mf-lib.vercel.app/';
+        cfg.output = {
+          ...cfg.output,
+          publicPath: `${process.env.HOST_URL}/`, // 'https://mf-lib.vercel.app/',
+        };
         cfg.plugins.push(
           new ModuleFederationPlugin({
             name: 'ui',
@@ -91,38 +98,13 @@ module.exports = configure(function (ctx) {
                 './src/fpcUILibrary/components/example/button',
               './components/fpcButton2':
                 './src/fpcUILibrary/components/example2/button',
+              './components/absentForm':
+                './src/fpcUILibrary/components/absentRequestFrom/AbsentRequestForm',
             },
             remotes: {},
             shared: ['vue', 'quasar', '@quasar/extras', 'core-js'],
-            // shared: {
-            //   vue: {
-            //     eager: true,
-            //   },
-            //   quasar: {
-            //     eager: true,
-            //   },
-            //   '@quasar/extras': {
-            //     eager: true,
-            //   },
-            //   'core-js': {
-            //     eager: true,
-            //   },
-            // },
           })
         );
-        // cfg.plugins.push(
-        //   new FederatedTypesPlugin({
-        //     federationConfig: {
-        //       name: 'ui',
-        //       filename: 'remoteEntry.js',
-        //       exposes: {},
-        //       remotes: {
-        //         template: 'template@http://localhost:8095/remoteEntry.js',
-        //       },
-        //       shared: ['vue', 'quasar', '@quasar/extras', 'core-js'],
-        //     },
-        //   }) // remote typesafe plugin
-        // );
       },
     },
 
