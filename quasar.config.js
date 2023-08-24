@@ -85,34 +85,38 @@ module.exports = configure(function (ctx) {
           .use(ESLintPlugin, [{ extensions: ['js', 'ts', 'vue'] }]);
       },
       extendWebpack(cfg) {
-        cfg.entry = path.resolve(__dirname, 'src/main.ts'); // from step 1
-        cfg.output = {
-          ...cfg.output,
-          publicPath: `${process.env.HOST_URL}/`, // 'https://mf-lib.vercel.app/',
-        };
-        cfg.plugins.push(
-          new ModuleFederationPlugin({
-            name: 'ui',
-            filename: 'remoteEntry.js',
-            exposes: {
-              './components/fpcButton':
-                './src/fpcUILibrary/components/example/button',
-              './components/fpcButton2':
-                './src/fpcUILibrary/components/example2/button',
-              './components/absentForm':
-                './src/fpcUILibrary/components/absentRequestFrom/AbsentRequestForm',
-            },
-            remotes: {},
-            shared: {
-              ...dependencies,
-            },
-          })
-        );
+        // mf need change the entry and output, which breaks HMR, so disable it when you are developing
+        if (process.env.DISABLE_MF != 'true') {
+          cfg.entry.app = path.resolve(__dirname, 'src/main.ts'); // from step 1
+          cfg.output = {
+            ...cfg.output,
+            publicPath: `${process.env.HOST_URL}/`, // 'https://mf-lib.vercel.app/',
+          };
+          cfg.plugins.push(
+            new ModuleFederationPlugin({
+              name: 'ui',
+              filename: 'remoteEntry.js',
+              exposes: {
+                './components/fpcButton':
+                  './src/fpcUILibrary/components/example/button',
+                './components/fpcButton2':
+                  './src/fpcUILibrary/components/example2/button',
+                './components/absentForm':
+                  './src/fpcUILibrary/components/absentRequestFrom/AbsentRequestForm',
+              },
+              remotes: {},
+              shared: {
+                ...dependencies,
+              },
+            })
+          );
+        }
       },
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-devServer
     devServer: {
+      hot: true,
       server: {
         type: 'http',
       },
