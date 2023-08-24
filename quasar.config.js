@@ -14,6 +14,7 @@ const { configure } = require('quasar/wrappers');
 const path = require('node:path');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 require('dotenv').config();
+const dependencies = require('./package.json').dependencies;
 
 module.exports = configure(function (ctx) {
   return {
@@ -102,7 +103,9 @@ module.exports = configure(function (ctx) {
                 './src/fpcUILibrary/components/absentRequestFrom/AbsentRequestForm',
             },
             remotes: {},
-            shared: ['vue', 'quasar', '@quasar/extras', 'core-js'],
+            shared: {
+              ...dependencies,
+            },
           })
         );
       },
