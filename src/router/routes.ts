@@ -3,7 +3,8 @@ import { RouteRecordRaw } from 'vue-router';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    component: () =>
+      import('src/fpcUILibrary/components/Layout/DefaultLayout.vue'),
     children: [
       { path: '', component: () => import('pages/PlaygroundPage.vue') },
     ],

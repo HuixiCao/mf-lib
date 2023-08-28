@@ -1,16 +1,20 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <div>123</div>
-    <buttonVue></buttonVue>
-    <AbsentRequestForm :formData="formData"
-  /></q-page>
+  <q-page>
+    <div class="row items-center justify-evenly">
+      <buttonVue></buttonVue>
+      <AbsentRequestForm :formData="formData" />
+    </div>
+
+    <div class="q-mt-lg"></div>
+    <FpcFooter />
+  </q-page>
 </template>
 
 <script setup lang="ts">
-import { defineComponent, ref } from 'vue';
+import { ref } from 'vue';
 import buttonVue from 'src/fpcUILibrary/components/example/button.vue';
 import AbsentRequestForm from 'src/fpcUILibrary/components/absentRequestFrom/AbsentRequestForm.vue';
-
+import FpcFooter from 'src/fpcUILibrary/components/Footer/FpcFooter.vue';
 const formData = ref({
   AbsentReasonCode: '',
   StartDateTime: '',

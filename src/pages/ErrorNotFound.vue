@@ -4,7 +4,7 @@
 </template>
 
 <script lang="ts">
-import { defineAsyncComponent, defineComponent } from 'vue';
+import { defineComponent } from 'vue';
 // const example = defineAsyncComponent(
 //   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //   // @ts-ignore

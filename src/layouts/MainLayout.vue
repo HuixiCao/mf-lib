@@ -1,5 +1,9 @@
 <template>
   <q-layout view="lHh Lpr lFf">
+    <q-header>
+      <Toolbar />
+    </q-header>
+
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -7,9 +11,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-// import testButton from 'fpcTemplate/template';
+import { defineComponent } from 'vue';
+import Toolbar from 'src/fpcUILibrary/components/Toolbar/ToolBar.vue';
 export default defineComponent({
   name: 'MainLayout',
+  components: {
+    Toolbar,
+  },
 });
 </script>
