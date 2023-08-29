@@ -1,7 +1,7 @@
 <template>
   <q-card bordered class="q-ma-md q-pa-lg shadow-1 centered-card">
     <div class="row items-center justify-center">
-      <img
+      <!-- <img
         style="
            {
             width: 100%;
@@ -9,7 +9,8 @@
           }
         "
         :src="logoUrl"
-      />
+      /> -->
+      <img class="loginPage-Logo" :src="logoUrl" />
     </div>
     <q-card-section>
       <q-form ref="formRef" class="q-gutter-md" @click.prevent="submit">
@@ -148,9 +149,9 @@ const submit = async () => {
 };
 </script>
 
-<!-- <style lang="scss" scoped>
+<style lang="scss" scoped>
 .loginPage-Logo {
   width: 100%;
   max-width: 700px;
 }
-</style> -->
+</style>
