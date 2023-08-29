@@ -103,6 +103,14 @@ module.exports = configure(function (ctx) {
                   './src/fpcUILibrary/components/example2/button',
                 './components/absentForm':
                   './src/fpcUILibrary/components/absentRequestFrom/AbsentRequestForm',
+                './components/Footer':
+                  './src/fpcUILibrary/components/Footer/FpcFooter',
+                './components/Layout/Toolbar':
+                  './src/fpcUILibrary/components/Layout/components/Toolbar/DefaultToolBar',
+                './components/Layout/LayoutFrame':
+                  './src/fpcUILibrary/components/Layout/components/Layout/DefaultLayoutFrame',
+                './components/LoginCard':
+                  './src/fpcUILibrary/components/LoginCard/LoginCard',
               },
               remotes: {},
               shared: {
