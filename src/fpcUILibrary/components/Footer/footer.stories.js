@@ -6,7 +6,7 @@ export default {
   component: FpcFooter,
 };
 
-export const Default = () => ({
+export const Default = {
   components: { FpcFooter },
   template: '<FpcFooter></FpcFooter>',
-});
+};

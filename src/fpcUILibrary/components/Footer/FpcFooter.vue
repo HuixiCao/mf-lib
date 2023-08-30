@@ -13,7 +13,7 @@
         <div class="row col-12 col-md q-pa-sm">
           <div class="col-12">
             <a
-              :class="linkFontColor"
+              :style="{ color: linkFontColor }"
               href="https://www.fleetprofitcenter.com/why-fleet-profit-center/"
               style="text-decoration: none"
               >Why Fleet Profit Center</a
@@ -21,7 +21,7 @@
           </div>
           <div class="col-12">
             <a
-              :class="linkFontColor"
+              :style="{ color: linkFontColor }"
               href="https://www.fleetprofitcenter.com/partners/"
               style="text-decoration: none"
               >Partners</a
@@ -29,7 +29,7 @@
           </div>
           <div class="col-12">
             <a
-              :class="linkFontColor"
+              :style="{ color: linkFontColor }"
               href="https://www.fleetprofitcenter.com/free-demo/"
               style="text-decoration: none"
               >Free Demo</a
@@ -37,7 +37,7 @@
           </div>
           <div class="col-12">
             <a
-              :class="linkFontColor"
+              :style="{ color: linkFontColor }"
               href="https://www.fleetprofitcenter.com/support/"
               style="text-decoration: none"
               >Support</a
@@ -47,7 +47,7 @@
         <div class="row col-12 col-md q-pa-sm">
           <div class="col-12">
             <a
-              :class="linkFontColor"
+              :style="{ color: linkFontColor }"
               href="https://www.fleetprofitcenter.com/about/"
               style="text-decoration: none"
               >About</a
@@ -55,7 +55,7 @@
           </div>
           <div class="col-12">
             <a
-              :class="linkFontColor"
+              :style="{ color: linkFontColor }"
               href="https://www.fleetprofitcenter.com/industries/"
               style="text-decoration: none"
               >Industries</a
@@ -63,7 +63,7 @@
           </div>
           <div class="col-12">
             <a
-              :class="linkFontColor"
+              :style="{ color: linkFontColor }"
               href="https://www.fleetprofitcenter.com/solutions/"
               style="text-decoration: none"
               >Solutions</a
@@ -71,7 +71,7 @@
           </div>
           <div class="col-12">
             <a
-              :class="linkFontColor"
+              :style="{ color: linkFontColor }"
               href="https://www.fleetprofitcenter.com/learn/"
               style="text-decoration: none"
             >
@@ -95,6 +95,6 @@ interface FooterProps {
 }
 withDefaults(defineProps<FooterProps>(), {
   backgroundColor: '#F2F2F2',
-  linkFontColor: 'text-indigo-10',
+  linkFontColor: '#1a237e',
 });
 </script>

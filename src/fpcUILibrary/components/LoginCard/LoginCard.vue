@@ -1,15 +1,6 @@
 <template>
   <q-card bordered class="q-ma-md q-pa-lg shadow-1 centered-card">
     <div class="row items-center justify-center">
-      <!-- <img
-        style="
-           {
-            width: 100%;
-            max-width: 700px;
-          }
-        "
-        :src="logoUrl"
-      /> -->
       <img class="loginPage-Logo" :src="logoUrl" />
     </div>
     <q-card-section>
@@ -132,8 +123,6 @@ const props = withDefaults(defineProps<LoginCardOptions>(), {
     };
   },
 });
-
-console.log('props', props);
 
 const emit = defineEmits<{
   (e: 'onLogin', value: LoginData): void;
